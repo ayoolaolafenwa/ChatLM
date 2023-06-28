@@ -1,9 +1,9 @@
-# ChatLM
 
-It is a chat Large Language model finetuned with pretrained [Falcon-1B model](https://huggingface.co/tiiuae/falcon-rw-1b)
+## ChatLM 
+It is a chat Large Language Model finetuned with pretrained [Falcon-1B model](https://huggingface.co/tiiuae/falcon-rw-1b)
 and trained on [chat-bot-instructions prompts dataset](https://huggingface.co/datasets/ayoolaolafenwa/sft-data).
 ChatLM was trained on a dataset containing normal day to day human conversations, due to limited data used in training
-it is not suitable for tasks like coding and current affairs. 
+it does not generalize well for tasks like coding and current affairs. 
 
 ## Load Model in bfloat16
 ``` python
@@ -66,10 +66,12 @@ output_text = output_text.replace("<|endoftext|>", "")
 
 print(output_text)
 ```
-## Training procedure for Supervised Finetuning
+# Training procedure for Supervised Finetuning
+
+## Dataset Preparation
 
 Chatbot Instructions prompts dataset from https://huggingface.co/datasets/alespalla/chatbot_instruction_prompts/viewer/alespalla--chatbot_instruction_prompts
-was processed into a supervised finetuning for training a user prompt and corresponding response.
+was processed into a supervised finetuning format for training a user prompt and a corresponding response.
 
 ##### Download Data
 ``` python
@@ -103,7 +105,7 @@ for i in range(len(text_data)):
     
     # Add the message to the prompts list with <user> tag
     prompts.append("<user>: " + prompt)
-    #elif sender == "bot":
+    
     # Add the message to the responses list with <chatbot> tag
     responses.append("<chatbot>: " + response)
 
@@ -114,9 +116,18 @@ new_data = pd.DataFrame({"prompt": prompts, "response": responses})
 # Write the new dataframe to a csv file
 new_data.to_csv("MyData/chatbot_instruction_prompts_train.csv", index=False)
 ```
-I appended the user's prompts in the dataset with the tag <user> and the response with the tag <chatbot>.
+The users` prompts in the dataset are appended with the tag <user> and the corresponding responses with the tag <chatbot>.
 Check the the modified dataset https://huggingface.co/datasets/ayoolaolafenwa/sft-data .
 
-ChatLM was trained with preatrained [Falcon-1B model](https://huggingface.co/tiiuae/falcon-rw-1b) and finetuned on the prepared supervised 
-dataset on a single H100 GPU. Check the full code for training [here](https://github.com/ayoolaolafenwa/ChatLM/blob/main/trainSFT.py). 
+### Training 
+
+ChatLM was supervised finetuned with pretrained [Falcon 1-Billion parameters model](https://huggingface.co/tiiuae/falcon-rw-1b) trained on 350-Billion tokens 
+of RefinedWeb. It was trained with a single H100 GPU for 1 epoch. It achieves Perplexity *1.738*.  
+
+Check the full code for Supervised Finetune training [here](https://github.com/ayoolaolafenwa/ChatLM/blob/main/trainSFT.py). 
 Check the training config [here](https://github.com/ayoolaolafenwa/ChatLM/blob/main/trainConf.conf)
+
+### Run Training with accelerate
+```
+accelerate launch --config_file trainConf.conf trainSFT.py
+```
