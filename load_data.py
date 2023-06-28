@@ -1,6 +1,6 @@
 from datasets import load_dataset
 
-dataset = load_dataset("alespalla/chatbot_instruction_prompts", split = "test")
+dataset = load_dataset("alespalla/chatbot_instruction_prompts", split = "train")
 dataset.save_to_disk('ChatBotInsP')
-dataset.to_csv('CIPtest.csv')
+dataset.to_csv('CIPtrain.csv')
 
