@@ -2,7 +2,7 @@
 import pandas as pd
 
 # Read the text dataset from csv file
-text_data = pd.read_csv("CIPtest.csv")
+text_data = pd.read_csv("CIPtrain.csv")
 
 # Create empty lists for prompts and responses
 prompts = []
