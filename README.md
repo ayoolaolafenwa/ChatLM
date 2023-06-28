@@ -5,6 +5,8 @@ and trained on [chat-bot-instructions prompts dataset](https://huggingface.co/da
 ChatLM was trained on a dataset containing normal day to day human conversations, due to limited data used in training
 it does not generalize well for tasks like coding and current affairs. 
 
+# Have a live chat with ChatLM on Huggingface space https://huggingface.co/spaces/ayoolaolafenwa/ChatLM
+
 ## Load Model in bfloat16
 ``` python
 import torch
