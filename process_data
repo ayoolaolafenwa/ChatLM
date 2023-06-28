@@ -33,5 +33,5 @@ new_data = pd.DataFrame({"prompt": prompts, "response": responses})
 
 #alespalla/chatbot_instruction_prompts
 # Write the new dataframe to a csv file
-new_data.to_csv("MyData/chatbot_instruction_prompts_test.csv", index=False)
+new_data.to_csv("MyData/chatbot_instruction_prompts_train.csv", index=False)
 
