@@ -14,18 +14,13 @@ for i in range(len(text_data)):
     prompt = text_data["prompt"][i]
     prompt = str(prompt)
 
-    #prompt = prompt.replace("\n", "")
-
     response = text_data["response"][i]
     response = str(response)
-    if "<|endoftext|>" in response:
-        print(response)
-    #response = response.replace("\n", "")
     
-    # Add the message to the prompts list with <human> tag
+    # Add the message to the prompts list with <user> tag
     prompts.append("<user>: " + prompt)
     #elif sender == "bot":
-    # Add the message to the responses list with <bot> tag
+    # Add the message to the responses list with <chatbot> tag
     responses.append("<chatbot>: " + response)
 
 # Create a new dataframe with prompts and responses columns
