@@ -114,8 +114,7 @@ def train():
 
         return new_samples
 
-    access_token = "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"
-    raw_datasets = load_dataset(dataset_name, use_auth_token = access_token)
+    raw_datasets = load_dataset(dataset_name)
     train_data = raw_datasets["train"]
     val_data = raw_datasets["test"]
 
