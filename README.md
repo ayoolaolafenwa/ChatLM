@@ -3,7 +3,7 @@
 It is a chat Large Language Model finetuned with pretrained [Falcon-1B model](https://huggingface.co/tiiuae/falcon-rw-1b)
 and trained on [chat-bot-instructions prompts dataset](https://huggingface.co/datasets/ayoolaolafenwa/sft-data).
 ChatLM was trained on a dataset containing normal day to day human conversations, due to limited data used in training
-it does not generalize well for tasks like coding and current affairs. 
+it does not generalize well for tasks like coding, current affairs and hallucinations may occur.
 
 # Have a live chat with ChatLM on Huggingface space https://huggingface.co/spaces/ayoolaolafenwa/ChatLM
 
