@@ -6,6 +6,13 @@ ChatLM was trained on a dataset containing normal day to day human conversations
 it does not generalize well for tasks like coding, current affairs and hallucinations may occur.
 
 # Have a live chat with ChatLM on Huggingface space https://huggingface.co/spaces/ayoolaolafenwa/ChatLM
+### Install Required Packages
+```
+pip install transformers
+pip install accelerate
+pip install einops
+pip install bitsandbytes
+```
 
 ## Load Model in bfloat16
 ``` python
@@ -17,7 +24,7 @@ model_path = "ayoolaolafenwa/ChatLM"
 tokenizer = AutoTokenizer.from_pretrained(model_path)
 
 model = AutoModelForCausalLM.from_pretrained(model_path, trust_remote_code = True,
-torch_dtype=torch.bfloat16)
+torch_dtype=torch.bfloat16).to("cuda")
 
 prompt = "<user>: Give me a financial advise on investing in stocks. <chatbot>: "
 
